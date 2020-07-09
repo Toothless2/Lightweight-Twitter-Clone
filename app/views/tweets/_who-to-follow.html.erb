@@ -2,58 +2,28 @@
     <nav class='panel'>
         <p class='panel-heading'>Who to Follow</p>
         
-        <div class='panel-block'>
-            <article class='media'>
-                <div class='media-left'>
-                    <figure class='image is-32x32'>
-                        <img src='https://bulma.io/images/placeholders/32x32.png'>
-                    </figure>
-                </div>
-                <div clas='media-content'>
-                    <div class='content'>
-                        <p>
-                            <strong>A User</strong>
-                            <small>@auser</small>
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </div>
+        <% User.all.sample(5).each do |suggested| %>
+            <% if user_signed_in? && suggested.id == current_user.id %>
+                <% next %>
+            <%end%>
 
-        <div class='panel-block'>
-            <article class='media'>
-                <div class='media-left'>
-                    <figure class='image is-32x32'>
-                        <img src='https://bulma.io/images/placeholders/32x32.png'>
-                    </figure>
-                </div>
-                <div clas='media-content'>
-                    <div class='content'>
-                        <p>
-                            <strong>A User</strong>
-                            <small>@auser</small>
-                        </p>
+            <div class='panel-block'>
+                <article class='media'>
+                    <div class='media-left'>
+                        <figure class='image is-32x32'>
+                            <%= gravatar_image_tag(suggested.email, size: 32, alt: suggested.name) %>
+                        </figure>
                     </div>
-                </div>
-            </article>
-        </div>
-
-        <div class='panel-block'>
-            <article class='media'>
-                <div class='media-left'>
-                    <figure class='image is-32x32'>
-                        <img src='https://bulma.io/images/placeholders/32x32.png'>
-                    </figure>
-                </div>
-                <div clas='media-content'>
-                    <div class='content'>
-                        <p>
-                            <strong>A User</strong>
-                            <small>@auser</small>
-                        </p>
+                    <div clas='media-content'>
+                        <div class='content'>
+                            <p>
+                                <strong><%= suggested.name %></strong>
+                                <small>@<%= suggested.username %></small>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </article>
-        </div>
+                </article>
+            </div>
+        <%end%>
     </nav>
 </div>
