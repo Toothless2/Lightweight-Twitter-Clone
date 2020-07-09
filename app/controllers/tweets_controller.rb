@@ -83,6 +83,6 @@ class TweetsController < ApplicationController
     end
 
     def like_params
-      params.permit(:id)
+      params.permit(:id).require(:id)
     end
 end

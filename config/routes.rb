@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   root 'tweets#index'
 
-  get '/like/:id', :to => 'tweets#like', :as => 'like'
+  get '/tweets/like/:id', :to => 'tweets#like', :as => 'like'
 end
