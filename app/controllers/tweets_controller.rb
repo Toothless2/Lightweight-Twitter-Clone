@@ -63,6 +63,14 @@ class TweetsController < ApplicationController
     end
   end
 
+  def like
+    tweet = Tweet.find(like_params)
+    tweet.likes = tweet.likes.to_i + 1
+    tweet.save
+
+    redirect_to root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
@@ -72,5 +80,9 @@ class TweetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def tweet_params
       params.require(:tweet).permit(:tweet)
+    end
+
+    def like_params
+      params.permit(:id)
     end
 end
