@@ -39,9 +39,11 @@
       <div id='navbarExample' class='navbar-menu'>
         <div class='navbar-end navbar-item'>
           <div class='field is-grouped'>
-            <p class='control'>
-              <%= link_to 'New Tweet', root_path, class: 'button is-info is-inverted' %>
-            </p>
+            <% if user_signed_in? %>
+              <p class='control'>
+                <%= link_to 'New Tweet', root_path, class: 'button is-info is-inverted' %>
+              </p>
+            <%end%>
 
             <p class='control'>
               <% if user_signed_in? %>
